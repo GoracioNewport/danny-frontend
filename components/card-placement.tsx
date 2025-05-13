@@ -86,7 +86,7 @@ const DraggableCard = ({ id, content, position, rotation, isFlipped, onMove, onR
         }`}
       >
         <div className="w-full h-full flex items-center justify-center p-4 text-center relative">
-          {content.image}
+          <img src={content.image} alt={`Card ${id}`} className="w-full h-full object-cover" />
           
           {/* Rotation button */}
           <button
@@ -163,7 +163,8 @@ export default function CardPlacement({ isActivePlayer, hand, onConfirm }: CardP
   }
 
   const getCardImage = (card: string | CardData): string => {
-    return typeof card === 'string' ? card : card.image
+    const cardId = typeof card === 'string' ? card : card.id;
+    return `/cards/${cardId}.png`;
   }
 
   const toggleCardSelection = (card: string | CardData) => {
@@ -208,7 +209,7 @@ export default function CardPlacement({ isActivePlayer, hand, onConfirm }: CardP
               onClick={() => toggleCardSelection(card)}
             >
               <div className="w-full h-full flex items-center justify-center p-4 text-center">
-                {getCardImage(card)}
+                <img src={getCardImage(card)} alt={`Card ${getCardId(card)}`} className="w-full h-full object-cover" />
               </div>
             </Card>
           )
@@ -228,7 +229,7 @@ export default function CardPlacement({ isActivePlayer, hand, onConfirm }: CardP
           <DraggableCard
             key={`table-${cardId}`}
             id={cardId}
-            content={{ id: cardId, image: cardId }}
+            content={{ id: cardId, image: `/cards/${cardId}.png` }}
             position={cardPositions[cardId] || { x: 0, y: 0 }}
             rotation={cardPositions[cardId]?.rotation || 0}
             isFlipped={cardPositions[cardId]?.isFlipped || false}

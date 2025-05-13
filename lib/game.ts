@@ -77,7 +77,7 @@ const useGameStore = create<GameStore>((set) => ({
           position_y: card.position_y || 0,
           rotation: card.rotation || 0,
           flipped: card.flipped || false,
-          image: `/placeholder.svg?height=120&width=80`
+          image: `/cards/${card.id}.png`
         })) || []
       },
       wordOptions: state.word_options || [],

@@ -347,7 +347,7 @@ export default function GamePage() {
                       >
                         <Card className={`w-full h-full transition-transform duration-300 ${card.flipped ? 'rotate-y-180' : ''}`}>
                           <div className="w-full h-full flex items-center justify-center p-4 text-center">
-                            {card.image}
+                            <img src={card.image} alt={`Card ${card.id}`} className="w-full h-full object-cover" />
                           </div>
                         </Card>
                       </div>
